@@ -22,7 +22,7 @@ import java.util.List;
  * @author MyEclipse Persistence Tools
  */
 @Repository("tUserDAO")
-public class TUserDAO extends BaseHibernateDAO {
+public class TUserDAO extends BaseHibernateDAOImpl<TUser> {
 	private static final Logger log = LoggerFactory.getLogger(TUserDAO.class);
 	// property constants
 	public static final String USER_NAME = "userName";

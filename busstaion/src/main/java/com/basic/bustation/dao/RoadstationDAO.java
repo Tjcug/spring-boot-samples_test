@@ -1,5 +1,6 @@
 package com.basic.bustation.dao;
 
+import com.basic.bustation.model.Roadsection;
 import com.basic.bustation.model.Roadstation;
 import org.hibernate.LockOptions;
 import org.hibernate.Query;
@@ -18,12 +19,12 @@ import java.util.List;
  * transactions. Each of these methods provides additional information for how
  * to configure it for the desired type of transaction control.
  * 
- * @see com.bus.model.Roadstation
+ * @see com
  * @author MyEclipse Persistence Tools
  */
 
 @Repository("roadstationDAO")
-public class RoadstationDAO extends BaseHibernateDAO {
+public class RoadstationDAO extends BaseHibernateDAOImpl<Roadsection> {
 	private static final Logger log = LoggerFactory
 			.getLogger(RoadstationDAO.class);
 	// property constants

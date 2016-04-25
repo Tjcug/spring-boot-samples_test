@@ -13,7 +13,7 @@ public class Roadsection implements java.io.Serializable {
 	private Roadstation roadstationByStartid;
 	private String name;
 	private Double elapsedtime;
-
+	private Double distance;
 	// Constructors
 
 	/** default constructor */
@@ -22,14 +22,23 @@ public class Roadsection implements java.io.Serializable {
 
 	/** full constructor */
 	public Roadsection(Roadstation roadstationByEndid,
-			Roadstation roadstationByStartid, String name, Double elapsedtime) {
+			Roadstation roadstationByStartid, String name, Double elapsedtime,Double distance) {
 		this.roadstationByEndid = roadstationByEndid;
 		this.roadstationByStartid = roadstationByStartid;
 		this.name = name;
 		this.elapsedtime = elapsedtime;
+		this.distance=distance;
 	}
 
 	// Property accessors
+
+	public Double getDistance() {
+		return distance;
+	}
+
+	public void setDistance(Double distance) {
+		this.distance = distance;
+	}
 
 	public Long getId() {
 		return this.id;

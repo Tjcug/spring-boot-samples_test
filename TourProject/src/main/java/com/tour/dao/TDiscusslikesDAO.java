@@ -1,5 +1,6 @@
 package com.tour.dao;
 
+import com.tour.model.TDiscuss;
 import com.tour.model.TDiscusslikes;
 import org.hibernate.LockOptions;
 import org.hibernate.Query;
@@ -22,7 +23,7 @@ import java.util.List;
  * @author MyEclipse Persistence Tools
  */
 @Repository("tDiscusslikesDAO")
-public class TDiscusslikesDAO extends BaseHibernateDAO {
+public class TDiscusslikesDAO extends BaseHibernateDAOImpl<TDiscuss> {
 	private static final Logger log = LoggerFactory
 			.getLogger(TDiscusslikesDAO.class);
 

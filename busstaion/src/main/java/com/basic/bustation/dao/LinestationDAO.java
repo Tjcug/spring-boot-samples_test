@@ -25,7 +25,7 @@ import java.util.List;
  */
 
 @Repository("linestationDAO")
-public class LinestationDAO extends BaseHibernateDAO {
+public class LinestationDAO extends BaseHibernateDAOImpl<Linestation> {
 	private static final Logger log = LoggerFactory
 			.getLogger(LinestationDAO.class);
 	// property constants

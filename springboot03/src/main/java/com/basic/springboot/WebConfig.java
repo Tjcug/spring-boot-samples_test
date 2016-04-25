@@ -1,4 +1,4 @@
-package com.basic.springboot.controller;
+package com.basic.springboot;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,6 +22,8 @@ public class WebConfig extends WebMvcConfigurerAdapter {
                 .addResourceLocations("classpath:/static/css/");
         registry.addResourceHandler("/js/**")
                 .addResourceLocations("classpath:/static/js/");
+//        registry.addResourceHandler("/templates/**")
+//                .addResourceLocations("classpath:/templates/");
     }
 
     // 用于处理编码问题

@@ -1,7 +1,6 @@
 package com.basic.bustation.controller;
 
 import com.basic.bustation.model.*;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,7 +14,6 @@ import java.util.List;
  * Created by dell-pc on 2016/4/21.
  */
 @Controller
-@EnableAutoConfiguration
 @Transactional(propagation= Propagation.REQUIRED)
 public class RoadstationController extends BaseController{
 
@@ -50,11 +48,19 @@ public class RoadstationController extends BaseController{
             Roadstation roadstationEndid=roadstation;
             Roadstation roadstationByStartid=linestation.get(linestation.size()-1).getRoadstation();
             String name=roadstationByStartid.getName()+"-"+roadstationEndid.getName();
-            roadsectionDAO.save(new Roadsection(roadstationEndid, roadstationByStartid, name, 5.0));
+            roadsectionDAO.save(new Roadsection(roadstationEndid, roadstationByStartid, name, 5.0,200.0));
         }
 
         //更新StationtoLine
         stationtolineDAO.save(new Stationtoline(roadstation, roadline, roadstation.getName()));
         return "success";
+    }
+
+    @RequestMapping(value = "/roadstation_findByName.action",
+            produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    public String findStationByStationName(@RequestParam String stationName){
+        Roadstation roadstation=stationtolineDAO.get("from Roadstation s where s.name=?",stationName);
+        return gson.toJson(roadstation);
     }
 }

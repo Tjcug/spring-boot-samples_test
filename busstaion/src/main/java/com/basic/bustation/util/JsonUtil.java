@@ -1,6 +1,7 @@
 package com.basic.bustation.util;
 
 import com.basic.bustation.model.Roadsection;
+import com.basic.bustation.model.Roadstation;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -18,10 +19,22 @@ public class JsonUtil {
 			map.put("name", roadsection.getName());
 			map.put("statrtstation", roadsection.getRoadstationByStartid().getName());
 			map.put("endstation", roadsection.getRoadstationByEndid().getName());
-			map.put("elapsedtime", roadsection.getElapsedtime()+"分钟");
+			map.put("elapsedtime", roadsection.getElapsedtime());
+			map.put("distance",roadsection.getDistance());
 			mapList.add(map);
 		}
 		return mapList;
 	}
-	
+
+	public Map<String,Object> roadstationToJson(Roadstation roadstation){
+		Map map=new HashMap();
+		map.put("id",roadstation.getId());
+		map.put("name",roadstation.getName());
+		map.put("demo",roadstation.getDemo());
+		map.put("longitude",roadstation.getLongitude());
+		map.put("latitude",roadstation.getLatitude());
+		map.put("staytime",roadstation.getStaytime());
+		return map;
+	}
+
 }

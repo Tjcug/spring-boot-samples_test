@@ -1,7 +1,6 @@
 package com.basic.springboot.controller;
 
 import com.basic.springboot.model.Student;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;

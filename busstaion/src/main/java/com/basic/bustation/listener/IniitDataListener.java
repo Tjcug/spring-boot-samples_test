@@ -1,11 +1,7 @@
 package com.basic.bustation.listener;
 
-import com.basic.bustation.dao.LinestationDAO;
-import com.basic.bustation.dao.RoadlineDAO;
-import com.basic.bustation.dao.RoadstationDAO;
+import com.basic.bustation.util.InitTask;
 import org.springframework.context.ApplicationContext;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import javax.servlet.ServletContextEvent;
@@ -20,28 +16,18 @@ import javax.servlet.annotation.WebListener;
  * 初始化监听事件
  */
 @WebListener
-@Transactional(propagation= Propagation.REQUIRED)
 public class IniitDataListener implements ServletContextListener{
-
-    private RoadlineDAO roadlineDAO;
-
-    private LinestationDAO linestationDAO;
-
-    private RoadstationDAO roadstationDAO;
 
     private ApplicationContext applicationContext=null;
 
+    private InitTask initTask;
     @Override
     public void contextInitialized(ServletContextEvent event) {
         System.out.println("init");
+        //初始化加载数据
         applicationContext=applicationContext= WebApplicationContextUtils.getWebApplicationContext(event.getServletContext());
-//        roadlineDAO=(RoadlineDAO) applicationContext.getBean("roadlineDAO");
-//        linestationDAO=(LinestationDAO) applicationContext.getBean("linestationDAO");
-//        roadstationDAO=(RoadstationDAO) applicationContext.getBean("roadstationDAO");
-//
-//        roadlineDAO.findAll();
-//        linestationDAO.findAll();
-//        roadstationDAO.findAll();
+        initTask= (InitTask) applicationContext.getBean("initTask");
+        initTask.run();
     }
 
     @Override

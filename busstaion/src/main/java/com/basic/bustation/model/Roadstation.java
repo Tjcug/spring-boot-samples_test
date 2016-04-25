@@ -47,6 +47,7 @@ public class Roadstation implements java.io.Serializable {
 
 	// Property accessors
 
+
 	public Long getId() {
 		return this.id;
 	}

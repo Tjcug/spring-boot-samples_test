@@ -23,7 +23,7 @@ import java.util.List;
  */
 
 @Repository("tAdministratorDAO")
-public class AdministratorDAO extends BaseHibernateDAO {
+public class AdministratorDAO extends BaseHibernateDAOImpl<Administrator> {
 	private static final Logger log = LoggerFactory
 			.getLogger(AdministratorDAO.class);
 	// property constants

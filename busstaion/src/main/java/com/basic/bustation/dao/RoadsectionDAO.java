@@ -23,7 +23,7 @@ import java.util.List;
  */
 
 @Repository("roadsectionDAO")
-public class RoadsectionDAO extends BaseHibernateDAO {
+public class RoadsectionDAO extends BaseHibernateDAOImpl<Roadsection> {
 	private static final Logger log = LoggerFactory
 			.getLogger(RoadsectionDAO.class);
 	// property constants

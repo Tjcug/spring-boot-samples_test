@@ -87,6 +87,16 @@ function addLocalserarch(map){
     });
     return local;
 }
+
+//画标记
+function addMakreOnMap(longitude,latitude,content,map){
+    var point=new BMap.Point(longitude,latitude);
+    var marker = new BMap.Marker(point);  // 创建标注
+    map.addOverlay(marker);
+    addClickHandler(map,content,marker);	//为标注添加监听事件
+    return marker;
+}
+
 /* 添加站点信息s到坐标上去
  * makrer 将标注信息存起来
  * points 将点得信息存起来
@@ -117,14 +127,16 @@ function getRoadLineListMap(map,data){
 
     for(var i=0;i<data.rows.length;i++){
         var road=data.rows[i];
-        var point = new BMap.Point(road.linestations[0].roadstation.longitude,road.linestations[0].roadstation.latitude);
-        //在地图上添加label标签
-        var text=road.name+' 开车时间:'+road.startTime+' 结束时间'+road.endTime;
-        addlabelonMap(map,point,text,"red");
-        var points=[];
+        if(road.linestations[0]!=null) {
+            var point = new BMap.Point(road.linestations[0].roadstation.longitude, road.linestations[0].roadstation.latitude);
+            //在地图上添加label标签
+            var text = road.name + ' 开车时间:' + road.startTime + ' 结束时间' + road.endTime;
+            addlabelonMap(map, point, text, "red");
+            var points = [];
 
-        addRoadStationsMap(map,road.linestations,markers,points,color[i]);
-        addRoadlineStringMap(map,data.linestring[i],color[i]);   //添加道路线路string到地图上
+            addRoadStationsMap(map, road.linestations, markers, points, color[i]);
+            addRoadlineStringMap(map, data.linestring[i], color[i]);   //添加道路线路string到地图上
+        }
     }
 
     //点类的聚合，百度地图接口

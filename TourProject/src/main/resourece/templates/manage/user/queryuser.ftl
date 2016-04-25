@@ -178,6 +178,7 @@
            closed="true" buttons="#dlg-buttons">
           <div class="ftitle">用户信息</div>
           <form id="fm" method="post">
+              <input name="id" class="easyui-validatebox" type="hidden">
               <div class="fitem">
                   <label>用户名</label>
                   <input name="userName" class="easyui-validatebox" required="true">

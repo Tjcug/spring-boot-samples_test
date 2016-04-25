@@ -8,7 +8,6 @@ import com.google.gson.ExclusionStrategy;
 import com.google.gson.FieldAttributes;
 import com.google.gson.GsonBuilder;
 import com.vividsolutions.jts.geom.LineString;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.expression.ParseException;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Propagation;
@@ -28,7 +27,6 @@ import java.util.Map;
  * Created by dell-pc on 2016/4/21.
  */
 @Controller
-@EnableAutoConfiguration
 @Transactional(propagation= Propagation.REQUIRED)
 public class RoadlineController extends BaseController{
 
@@ -123,6 +121,29 @@ public class RoadlineController extends BaseController{
         model.setEndTime(new Time(sdf.parse(endTime2).getTime()));
         roadlineDAO.save(model);
         return "success";
+    }
+
+    @RequestMapping(value = "/roadline_update.action",
+            produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    public String update(@RequestParam String name,@RequestParam String startTime ,
+                         @RequestParam String endTime, @RequestParam Long id) throws ParseException, java.text.ParseException {
+
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+        Map map=new HashMap<>();
+        try {
+            Roadline model=roadlineDAO.findById(id);
+            model.setId(id);
+            model.setName(name);
+            model.setStartTime(new Time(sdf.parse(startTime).getTime()));
+            model.setEndTime(new Time(sdf.parse(endTime).getTime()));
+            roadlineDAO.merge(model);
+            map.put("success",true);
+        }catch (Exception e){
+            map.put("errorMsg",e.getMessage());
+            e.printStackTrace();
+        }
+        return gson.toJson(map);
     }
 
     /**

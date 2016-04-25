@@ -30,5 +30,12 @@
                 <comment>经过时间单位分钟</comment>
             </column>
         </property>
+
+        <property name="distance" type="java.lang.Double">
+            <column name="distance" precision="22" scale="0" not-null="true">
+                <comment>经过的距离</comment>
+            </column>
+        </property>
+
     </class>
 </hibernate-mapping>

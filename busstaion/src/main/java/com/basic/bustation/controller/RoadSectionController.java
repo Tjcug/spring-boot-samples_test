@@ -1,7 +1,6 @@
 package com.basic.bustation.controller;
 
 import com.basic.bustation.model.Roadsection;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,7 +16,6 @@ import java.util.Map;
  * Created by dell-pc on 2016/4/21.
  */
 @Controller
-@EnableAutoConfiguration
 @Transactional(propagation= Propagation.REQUIRED)
 public class RoadSectionController extends BaseController{
 
@@ -31,5 +29,39 @@ public class RoadSectionController extends BaseController{
         List<Roadsection> roadSectionList=roadsectionDAO.queryWithPageAndSize(model.getName(), page, rows);
         pageMap.put("rows", jsonUtil.roadsectionList(roadSectionList));
         return gson.toJson(pageMap);
+    }
+
+    @RequestMapping(value = "/roadsection_update.action",
+            produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    public String update(Roadsection model){
+        Map map=new HashMap<>();
+        try {
+            Roadsection roadsection=roadsectionDAO.findById(model.getId());
+            roadsection.setName(model.getName());
+            roadsection.setDistance(model.getDistance());
+            roadsection.setElapsedtime(model.getElapsedtime());
+            map.put("success",true);
+        }catch (Exception e){
+            map.put("errorMsg",e.getMessage());
+            e.printStackTrace();
+        }
+        return gson.toJson(map);
+    }
+
+    @RequestMapping(value = "/roadsection_savedistance.action",
+            produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    public String saveDistance(Roadsection model){
+        Map map=new HashMap<>();
+        try {
+            Roadsection roadsection=roadsectionDAO.findById(model.getId());
+            roadsection.setDistance(model.getDistance());
+            map.put("success",true);
+        }catch (Exception e){
+            map.put("errorMsg",e.getMessage());
+            e.printStackTrace();
+        }
+        return gson.toJson(map);
     }
 }

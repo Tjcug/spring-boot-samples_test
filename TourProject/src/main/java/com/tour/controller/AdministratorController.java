@@ -24,7 +24,6 @@ public class AdministratorController extends BaseController{
      * 后台登录的控制器
      * @param username 用户名
      * @param password 密码
-     * @param  模型控制器
      * @return
      */
     @RequestMapping("/login")
@@ -35,11 +34,13 @@ public class AdministratorController extends BaseController{
             Administrator admin = tAdministratorService.findadminByusernameAndPass(username, password);
             if(admin!=null) {
                 modelAndView.addObject("admin", admin);
-                modelAndView.setViewName(mainPath+"/aindex");
+                modelAndView.setViewName("redirect:/manage__aindex");
             }
-        }else {
-            modelAndView.addObject("error","用户名或者密码错误");
-        }
+            else {
+                modelAndView.addObject("error","用户名或者密码错误");
+            }
+        }else
+            modelAndView.addObject("error","用户名或者密码不能为空");
         return modelAndView;
     }
 

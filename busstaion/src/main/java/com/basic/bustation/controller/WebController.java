@@ -1,6 +1,5 @@
 package com.basic.bustation.controller;
 
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * Created by dell-pc on 2016/4/21.
  */
 @Controller
-@EnableAutoConfiguration
 public class WebController extends  BaseController{
 
     @RequestMapping(value = "/",produces = "text/html;charset=UTF-8")

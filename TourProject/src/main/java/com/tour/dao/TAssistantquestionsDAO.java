@@ -1,8 +1,6 @@
 package com.tour.dao;
 
-import java.util.Date;
-import java.util.List;
-
+import com.tour.model.TAssistantquestions;
 import org.hibernate.LockOptions;
 import org.hibernate.Query;
 import org.hibernate.criterion.Example;
@@ -10,7 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
-import com.tour.model.TAssistantquestions;
+import java.util.List;
 
 /**
  * A data access object (DAO) providing persistence and search support for
@@ -24,7 +22,7 @@ import com.tour.model.TAssistantquestions;
  * @author MyEclipse Persistence Tools
  */
 @Repository("tAssistantquestionsDAO")
-public class TAssistantquestionsDAO extends BaseHibernateDAO {
+public class TAssistantquestionsDAO extends BaseHibernateDAOImpl<TAssistantquestions> {
 	private static final Logger log = LoggerFactory
 			.getLogger(TAssistantquestionsDAO.class);
 	// property constants

@@ -1,9 +1,6 @@
 package com.tour.dao;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Set;
-
+import com.tour.model.TDiscuss;
 import org.hibernate.LockOptions;
 import org.hibernate.Query;
 import org.hibernate.criterion.Example;
@@ -11,7 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
-import com.tour.model.TDiscuss;
+import java.util.List;
 
 /**
  * A data access object (DAO) providing persistence and search support for
@@ -25,7 +22,7 @@ import com.tour.model.TDiscuss;
  * @author MyEclipse Persistence Tools
  */
 @Repository("tDiscussDAO")
-public class TDiscussDAO extends BaseHibernateDAO {
+public class TDiscussDAO extends BaseHibernateDAOImpl<TDiscuss> {
 	private static final Logger log = LoggerFactory
 			.getLogger(TDiscussDAO.class);
 	// property constants

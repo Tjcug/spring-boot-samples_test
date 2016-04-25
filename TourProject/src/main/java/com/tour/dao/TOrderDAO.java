@@ -1,8 +1,6 @@
 package com.tour.dao;
 
-import java.util.Date;
-import java.util.List;
-
+import com.tour.model.TOrder;
 import org.hibernate.LockOptions;
 import org.hibernate.Query;
 import org.hibernate.criterion.Example;
@@ -10,7 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
-import com.tour.model.TOrder;
+import java.util.List;
 
 /**
  * A data access object (DAO) providing persistence and search support for
@@ -24,7 +22,7 @@ import com.tour.model.TOrder;
  * @author MyEclipse Persistence Tools
  */
 @Repository("tOrderDAO")
-public class TOrderDAO extends BaseHibernateDAO {
+public class TOrderDAO extends BaseHibernateDAOImpl<TOrder> {
 	private static final Logger log = LoggerFactory.getLogger(TOrderDAO.class);
 	// property constants
 	public static final String TYPE = "type";

@@ -18,11 +18,11 @@ import java.util.List;
  * methods provides additional information for how to configure it for the
  * desired type of transaction control.
  * 
- * @see com.bus.model.Roadline
+ * @see
  * @author MyEclipse Persistence Tools
  */
 @Repository("roadlineDAO")
-public class RoadlineDAO extends BaseHibernateDAO {
+public class RoadlineDAO extends BaseHibernateDAOImpl<Roadline> {
 	private static final Logger log = LoggerFactory
 			.getLogger(RoadlineDAO.class);
 	// property constants

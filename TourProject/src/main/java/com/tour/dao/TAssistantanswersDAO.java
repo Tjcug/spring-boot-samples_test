@@ -23,7 +23,7 @@ import java.util.List;
  */
 
 @Repository("tAssistantanswersDAO")
-public class TAssistantanswersDAO extends BaseHibernateDAO {
+public class TAssistantanswersDAO extends BaseHibernateDAOImpl<TAssistantanswers> {
 	private static final Logger log = LoggerFactory
 			.getLogger(TAssistantanswersDAO.class);
 	// property constants

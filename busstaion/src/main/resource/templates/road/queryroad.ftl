@@ -4,11 +4,7 @@
 <html>
   <head>
     <title>公交车管理系统</title>
-    <style type="text/css">
-				.searchbox {
-					margin: -3;
-				}
-</style>
+      <link rel="stylesheet" type="text/css" href="${shop}/css/main.css">
 	<script type="text/javascript">
 		$(function(){
 		$('#dg').datagrid({
@@ -37,8 +33,23 @@
 								});  
 						}
 					},'-',{
+                    iconCls: 'icon-add',
+                    text:"编辑公交线路信息",
+                    handler: function()
+                    {
+                        var rows = $('#dg').datagrid('getSelections');
+                        if(rows.length!=1) {
+                            showInfoMessage("只能编辑一个公交线路");
+                        }else{
+                            var row=rows[0];
+                            $('#dlg').dialog('open').dialog('setTitle','编辑公交线路');
+                            $('#fm').form('load',row);
+                            url = 'roadline_update.action?id='+row.id;
+                        }
+                    }
+                },'-',{
 					iconCls: 'icon-edit',
-					text:"编辑公交线路",
+					text:"编辑公交线路站点",
 					handler: function()
 					{
 						var rows=$("#dg").datagrid("getSelections");
@@ -96,7 +107,7 @@
 								}
 					}
 				}, '-',{
-					iconCls: 'icon-edit',
+					iconCls: 'icon-remove',
 					text:"删除公交线路道路信息",
 					handler: function()
 					{
@@ -169,6 +180,29 @@
 			});
 
 		});
+
+
+        function saveRoadline(){
+            $('#fm').form('submit', {
+                url: url,
+                onSubmit: function () {
+                    return $(this).form('validate');
+                },
+                success: function (result) {
+                    var result = eval('(' + result + ')');
+                    if (result.errorMsg) {
+                        $.messager.show({
+                            title: 'Error',
+                            msg: result.errorMsg
+                        });
+                    } else {
+                        $('#dlg').dialog('close');		// close the dialog
+                        $('#dg').datagrid('reload');	// reload the user data
+                    }
+                }
+            });
+        }
+
 	</script>
   </head>
 
@@ -177,5 +211,30 @@
 
  	<table id="dg" ></table>
  	<div id="win" data-options="collapsible:false,minimizable:false,maximizable:false,modal:true"></div>
+
+
+    <div id="dlg" class="easyui-dialog" style="width:400px;height:280px;padding:10px 20px"
+         closed="true" buttons="#dlg-buttons">
+        <div class="ftitle">公交线路信息</div>
+        <form id="fm" method="post">
+            <div class="fitem">
+                <label>公交线路名称</label>
+                <input name="name" class="easyui-validatebox" required="true">
+            </div>
+            <div class="fitem">
+                <label>开车时间</label>
+                <input name="startTime"  class="easyui-timespinner"  required="true">
+            </div>
+            <div class="fitem">
+                <label>结束时间</label>
+                <input name="endTime" class="easyui-timespinner" required="true" >
+            </div>
+        </form>
+    </div>
+    <div id="dlg-buttons">
+        <a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="saveRoadline()">保存</a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg').dialog('close')">Cancel</a>
+    </div>
+
 </body>  
 </html>
