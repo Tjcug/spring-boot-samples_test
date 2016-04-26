@@ -1,6 +1,5 @@
 package com.basic.bustation.dao;
 
-import com.basic.bustation.model.Roadsection;
 import com.basic.bustation.model.Roadstation;
 import org.hibernate.LockOptions;
 import org.hibernate.Query;
@@ -24,7 +23,7 @@ import java.util.List;
  */
 
 @Repository("roadstationDAO")
-public class RoadstationDAO extends BaseHibernateDAOImpl<Roadsection> {
+public class RoadstationDAO extends BaseHibernateDAOImpl<Roadstation> {
 	private static final Logger log = LoggerFactory
 			.getLogger(RoadstationDAO.class);
 	// property constants

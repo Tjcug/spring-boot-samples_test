@@ -26,6 +26,22 @@ public class JsonUtil {
 		return mapList;
 	}
 
+    /**
+     * 将链表站点信息转换为json对象
+     * @param roadstationList
+     * @return
+     */
+	public List<Map<String,Object>> roadStationList(List<Roadstation> roadstationList){
+		List<Map<String,Object>> mapList=new ArrayList<>();
+		for(Roadstation roadstation:roadstationList){
+			Map<String,Object> map=new HashMap<>();
+            map=roadstationToJson(roadstation);
+			mapList.add(map);
+		}
+		return mapList;
+	}
+
+    //将站点信息转换为json对象
 	public Map<String,Object> roadstationToJson(Roadstation roadstation){
 		Map map=new HashMap();
 		map.put("id",roadstation.getId());

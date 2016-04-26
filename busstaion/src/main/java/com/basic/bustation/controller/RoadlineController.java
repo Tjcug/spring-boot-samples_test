@@ -127,7 +127,7 @@ public class RoadlineController extends BaseController{
             produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String update(@RequestParam String name,@RequestParam String startTime ,
-                         @RequestParam String endTime, @RequestParam Long id) throws ParseException, java.text.ParseException {
+                         @RequestParam String endTime, @RequestParam Long id) throws ParseException {
 
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
         Map map=new HashMap<>();
@@ -205,13 +205,14 @@ public class RoadlineController extends BaseController{
 
         gson=new GsonBuilder().setExclusionStrategies(exclusionStrategy).create();
         Map pageMap=new HashMap<>();
-        if(roadstationDAO.getCount(startaddress)==0||roadstationDAO.getCount(endaddress)==0){
+
+        Roadstation startstation=busSearchUtil.findRoadStation(startaddress);
+        Roadstation endstation=busSearchUtil.findRoadStation(endaddress);
+
+        if(startstation==null||endstation==null){
             pageMap.put("result", "找不到这样的起点终点的站台,请输入正确的起点和终点的站台。");
             return gson.toJson(pageMap);
         }
-
-        Roadstation startstation=(Roadstation)roadstationDAO.findByName(startaddress).get(0);
-        Roadstation endstation=(Roadstation)roadstationDAO.findByName(endaddress).get(0);
 
         List<Stationtoline> startLineList=stationtolineDAO.findBystation(startstation);
         List<Stationtoline> endLineList=stationtolineDAO.findBystation(endstation);

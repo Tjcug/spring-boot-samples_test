@@ -73,13 +73,12 @@
 				<ul>
 					<li><a title="send_road_queryroad.action">公交线路管理</a></li>
 					<li><a title="send_section_querysection.action">公交线路段管理</a></li>
-					<li><a title="send_road_bussearch.action">公交换乘算法</a></li>
 				</ul>
 			</div>
-			<div title="其他操作" >
+			<div title="换乘操作" >
 				<ul>
-					<li><a title="#">销售管理</a></li>
-					<li><a title="#">销售订单地图显示</a></li>
+					<li><a title="send_road_bussearch.action">公交换乘算法</a></li>
+					<li><a title="send_bussearch_search.action">公交线路基于最短路径的算法</a></li>
 				</ul>
 			</div>
 		</div>
