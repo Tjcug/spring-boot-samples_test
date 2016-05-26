@@ -40,6 +40,7 @@ public class TUserController extends BaseController{
         Map map=new HashMap<>();
         try {
             userService.save(user);
+            log.info(user.getUserName());
             map.put("success",true);
         }catch (Exception e){
             map.put("errorMsg",e.getMessage());

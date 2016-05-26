@@ -1,5 +1,7 @@
 package com.tour.model;
 
+import com.vividsolutions.jts.geom.Point;
+
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -24,9 +26,9 @@ public class TUser implements java.io.Serializable {
 	private String creditcard;
 	private String telephone;
 	private double score;
-	private double longitude;
-	private double latitude;
 	private Date time;
+	private boolean pushnotifcation;
+	private Point location;
 	transient private Set TReplaiesForTouser = new HashSet(0);
 	transient private Set TReplaiesForFromuser = new HashSet(0);
 	transient private Set TDiscusslikeses = new HashSet(0);
@@ -45,8 +47,7 @@ public class TUser implements java.io.Serializable {
 	/** full constructor */
 	public TUser(String userName, String email, String password, short sex,
 			Date birthday, String picture, String country, String city,
-			String creditcard, String telephone, double score,
-			double longitude, double latitude, Date time,
+			String creditcard, String telephone, double score, Date time,
 			Set TReplaiesForTouser, Set TReplaiesForFromuser,
 			Set TDiscusslikeses, Set TAssistantquestionses, Set TDiscusses,
 			Set TAssistantanswerses, Set TOrdersForOrderTouser,
@@ -62,8 +63,6 @@ public class TUser implements java.io.Serializable {
 		this.creditcard = creditcard;
 		this.telephone = telephone;
 		this.score = score;
-		this.longitude = longitude;
-		this.latitude = latitude;
 		this.time = time;
 		this.TReplaiesForTouser = TReplaiesForTouser;
 		this.TReplaiesForFromuser = TReplaiesForFromuser;
@@ -76,6 +75,22 @@ public class TUser implements java.io.Serializable {
 	}
 
 	// Property accessors
+
+    public Point getLocation() {
+        return location;
+    }
+
+    public void setLocation(Point location) {
+        this.location = location;
+    }
+
+    public boolean isPushnotifcation() {
+		return pushnotifcation;
+	}
+
+	public void setPushnotifcation(boolean pushnotifcation) {
+		this.pushnotifcation = pushnotifcation;
+	}
 
 	public long getId() {
 		return this.id;
@@ -171,22 +186,6 @@ public class TUser implements java.io.Serializable {
 
 	public void setScore(double score) {
 		this.score = score;
-	}
-
-	public double getLongitude() {
-		return this.longitude;
-	}
-
-	public void setLongitude(double longitude) {
-		this.longitude = longitude;
-	}
-
-	public double getLatitude() {
-		return this.latitude;
-	}
-
-	public void setLatitude(double latitude) {
-		this.latitude = latitude;
 	}
 
 	public Date getTime() {

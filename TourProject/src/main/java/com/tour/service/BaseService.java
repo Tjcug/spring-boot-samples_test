@@ -15,4 +15,5 @@ public interface BaseService<T> {
 	public T get(int id);
 	
 	public List<T> queryALL();
+
 }

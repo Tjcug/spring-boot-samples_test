@@ -64,8 +64,17 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         ServletListenerRegistrationBean registrationBean=new ServletListenerRegistrationBean();
         IniitDataListener iniitDataListener=new IniitDataListener();
         registrationBean.setListener(iniitDataListener);
-        registrationBean.setName("iniitDataListener");
+        registrationBean.setName("initDataListener");
         registrationBean.setEnabled(true);
         return registrationBean;
     }
+
+//    @Bean
+//    public ServletRegistrationBean dispatcherServletRegistration() {
+//        OL4JSFProxy ol4JSFProxyServlet=new OL4JSFProxy();
+//        ServletRegistrationBean registration = new ServletRegistrationBean(ol4JSFProxyServlet,"/OL4JSFProxy/*");
+//        registration.setLoadOnStartup(2);
+//        return registration;
+//    }
+
 }

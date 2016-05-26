@@ -4,6 +4,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.tour.model.TUser;
 import com.tour.service.TUserService;
+import com.tour.util.JsonUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,6 +18,9 @@ import java.util.Map;
 @Service("tUserService")
 @SuppressWarnings("unchecked")
 public class TUserServiceImpl extends BaseServiceImpl implements TUserService{
+
+	@Autowired
+	protected JsonUtil jsonUtil;
 
 	@Override
 	public void save(TUser t) {
@@ -60,7 +65,8 @@ public class TUserServiceImpl extends BaseServiceImpl implements TUserService{
 		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
 		Map map=new HashMap();
 		map.put("total",total);
-		map.put("rows",userList);
+		map.put("rows",jsonUtil.fromTUserList(userList));
+		//map.put("rows",userList);
 		return gson.toJson(map);
 	}
 }

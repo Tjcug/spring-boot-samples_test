@@ -32,6 +32,12 @@ public class WebController extends BaseController{
         return "upload";
     }
 
+    /**
+     * 页面转发控制器 两个参数
+     * @param var1
+     * @param var2
+     * @return
+     */
     @RequestMapping("/manage_{var1}_{var2}")
     public String sendFunc(@PathVariable("var1") String var1, @PathVariable("var2") String var2){
         return mainPath+var1+"/"+var2;

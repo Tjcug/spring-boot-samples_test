@@ -1,5 +1,6 @@
 package com.basic.bustation.dao;
 
+import com.basic.bustation.Application;
 import com.basic.bustation.model.Roadline;
 import com.vividsolutions.jts.geom.Geometry;
 import com.vividsolutions.jts.geom.LineString;
@@ -8,7 +9,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.test.context.ContextConfiguration;
+import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.boot.test.WebIntegrationTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Propagation;
@@ -18,8 +20,9 @@ import javax.annotation.Resource;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations="classpath:applicationContext.xml")
-@TransactionConfiguration(defaultRollback=false) 
+@SpringApplicationConfiguration(classes = Application.class)
+@WebIntegrationTest("server.port:0")
+@TransactionConfiguration(defaultRollback=false)
 @Transactional(propagation=Propagation.REQUIRED)
 public class HibernateSpatialTest {
 	@Resource

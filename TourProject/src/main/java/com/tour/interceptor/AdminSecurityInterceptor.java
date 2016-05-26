@@ -32,7 +32,7 @@ public class AdminSecurityInterceptor implements HandlerInterceptor {
             log.info(modelAndView.getViewName());
             modelAndView.setViewName("manage/login");
         }else if(modelAndView.getViewName().equals("manage/login")){
-                modelAndView.setViewName("redirect:/manage__aindex");
+                modelAndView.setViewName("redirect:/manage");
             }
     }
 
