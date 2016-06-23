@@ -23,7 +23,7 @@ import javax.annotation.Resource;
 @SpringApplicationConfiguration(classes = Application.class)
 @WebIntegrationTest("server.port:0")
 @TransactionConfiguration(defaultRollback=false)
-@Transactional(propagation=Propagation.REQUIRED)
+@Transactional(propagation= Propagation.REQUIRED)
 public class HibernateSpatialTest {
 	@Resource
 	private RoadlineDAO roadlineDAO;
@@ -50,4 +50,8 @@ public class HibernateSpatialTest {
 		}
 	}
 
+	@Test
+	public void sys01(){
+		System.out.println("fdsfsd");
+	}
 }

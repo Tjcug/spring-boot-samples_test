@@ -18,6 +18,7 @@ import javax.servlet.MultipartConfigElement;
 @ImportResource("applicationContext.xml")
 public class Application {
 
+//   设置文件传输的最大文件大小
     @Bean
     public MultipartConfigElement multipartConfigElement() {
         MultipartConfigFactory factory = new MultipartConfigFactory();
